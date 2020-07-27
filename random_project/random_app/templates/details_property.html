@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<html>
+<head>
+	<title>Property Details</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+	<br>
+	<div class="container">
+
+		<div class="card bg-dark text-white">
+		  <img src="/{{prop.images}}" width="200" height="auto" class="cover" class="card-img" alt="...">
+		  <div class="card-img-overlay">
+		    <h5 class="card-title">{{prop.title}}</h5>
+		    <p class="card-text">{{prop.pub_date|timesince}}</p>
+		  </div>
+		</div>
+		<br>
+
+		<div class="card bg-light mb-9" style="max-width: 80rem;">
+		  <div class="card-header">{{prop.title}}</div>
+		  <div class="card-body">
+		    <h5 class="card-title">₹ {{prop.price_per_day}} /day</h5>
+		    <p class="card-text">{{prop.description|linebreaks}}</p>
+		  </div>
+		</div>
+		<div class="card border-primary mb-9" style="max-width: 80rem;">
+		  <div class="card-body text-primary">
+		  	{% for amenities in prop.amenities.all %}
+
+		    <p class="card-text">{{forloop.counter}} ) {{amenities}}</p>
+		    {% endfor %}
+		  </div>
+		</div>
+		<br>
+		<hr>
+		<center>
+			<p>Made by </p>
+		</center>
+
+
+
+
+
+	</div>
+</body>
+</html>
+
+{% endblock %}

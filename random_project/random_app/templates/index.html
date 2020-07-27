@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<html>
+<head>
+	<title>Project</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+	
+<br>
+
+<div class="container">
+
+	<div class="card text-center">
+	  <div class="card-header">
+	    Featured
+	  </div>
+	  <div class="card-body">
+	    <h5 class="card-title">Special Offer For You {{user.first_name}}</h5>
+	    <p class="card-text">We Would like to know where you want to stay on this planet.</p>
+	    <!-- search button -->
+	    <form>
+	      <div class="form-row">
+	        <div class="col">
+	          <input type="text" class="form-control" placeholder="Search Location" name="q", value="{{request.GET.q}}">
+	        </div>	       
+	      </div>
+	      <br>
+	       <div class="col">
+	          <input type="Submit" class="btn btn-outline-primary">
+	        </div>
+	    </form>
+	    
+
+
+	  </div>
+	  <div class="card-footer text-muted">
+	    2 days ago
+	  </div>
+	</div>
+
+	<br>
+
+	<div class="row mb-2">
+		{% for property in latest_property %}
+	    <div class="col-md-6">
+	      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+	        <div class="col p-4 d-flex flex-column position-static">
+	          <strong class="d-inline-block mb-2 text-primary">{{property.location}}</strong>
+	          <h3 class="mb-0">{{property.title|truncatechars:20}}</h3>
+	          <div class="mb-1 text-muted">{{property.pub_date|timesince}}</div>
+	          <p class="card-text mb-auto">{{property.description|truncatechars:100}}</p>
+	          <a href="/airbnb/details_property/{{property.id}}" class="stretched-link">View More</a>
+	        </div>
+	        <div class="col-auto d-none d-lg-block">
+	        	<img src="/{{property.images}}" class="bd-placeholder-img" width="200" height="250">
+	        </div>
+	      </div>
+	    </div>
+	    {% endfor %}
+	  </div>
+
+</div>
+
+
+
+
+
+
+</body>
+</html>
+{% endblock %}
+
